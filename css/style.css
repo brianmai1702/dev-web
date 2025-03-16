@@ -1,7 +1,7 @@
 body {
     background-color: #121212;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: "Cagliostro", sans-serif;
     text-align: center;
     padding: 20px;
 }
@@ -14,19 +14,111 @@ button {
     color: white;
     border: none;
     padding: 10px 20px;
+    font-size: 20px;
     margin: 10px;
     cursor: pointer;
 }
+
+.h1{
+    font-family: "Candal", sans-serif;  
+}
+
 footer img {
-    width: 100px;
     height: auto;
     margin: 10px;
-    filter: invert(1); /* Rend les logos blancs sur fond sombre */
+    width: 200px;
 }
+
+a { 
+    text-decoration: none;
+    color: white;
+}
+
+a:active { 
+    text-decoration: none;
+}
+
 .light-theme {
     background-color: white;
     color: black;
 }
+
 .light-theme footer img {
-    filter: invert(0); /* Rend les logos noirs sur fond clair */
+    filter: invert(1);
 }
+
+header {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none; /* Pas de soulignement par défaut */
+    color: white; /* Texte en blanc */
+    position: relative; /* Nécessaire pour positionner la ligne */
+    padding-bottom: 5px; /* Ajoute un peu d'espace sous le texte */
+  }
+  
+  nav a::after {
+    content: ""; /* Crée un élément pseudo */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%; /* Début invisible */
+    height: 2px; /* Épaisseur du soulignement */
+    background-color: white; /* Couleur blanche */
+    transition: width 0.3s ease-in-out; /* Animation fluide */
+  }
+  
+  nav a:hover::after {
+    width: 100%; /* Étend le soulignement */
+  }  
+
+#menu-accueil {
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.light-theme #menu-accueil,
+.light-theme ul li a {
+    color: black;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.background-gif {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Derrière tout le contenu */
+  }
+  
