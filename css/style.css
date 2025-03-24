@@ -5,6 +5,7 @@ body {
     text-align: center;
     padding: 20px;
 }
+
 .container {
     max-width: 800px;
     margin: auto;
@@ -121,4 +122,103 @@ ul li a {
     object-fit: cover;
     z-index: -1; /* Derrière tout le contenu */
   }
-  
+
+  /* Responsive */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding-top: 10px;
+    }
+}
+
+.container {
+    padding: 10px;
+}
+
+.figure-container {
+    text-align: center;
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    height: 500px;
+    overflow: hidden;
+}
+
+.figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.figure img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.blurred {
+    width: 230px;
+    height: auto;
+    opacity: 0.5;
+    filter: blur(5px);
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#play-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+#theme-toggle {
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1); /* Effet de zoom au survol */
+}
+
+#language-toggle {
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#language-toggle:hover {
+    transform: scale(1.1); /* Effet de zoom au survol */
+}
+
+.bouton-espacement {
+    margin-right: 20px;
+}

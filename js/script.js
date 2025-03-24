@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById("theme-toggle");
     const languageToggle = document.getElementById("language-toggle");
-    const title1 = document.getElementById("title1");  // Utiliser id pour un seul élément
+    const title1 = document.getElementById("title1");
     const title2 = document.getElementById("title2");
     const title3 = document.getElementById("title3");
     const title4 = document.getElementById("title4");
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "title4" : "Bienvenue sur la page contexte historique",
             "title5" : "Bienvenue sur la page figures",
             "title6" : "Bienvenue sur la page playlist",
-            "docu-btn" : "▶ Visionner le documentaire",
+            "docu-btn" : "▶ Voir le documentaire",
             "menu-accueil": "Accueil",
             "menu-documentaire": "Documentaire",
             "menu-contexte": "Contexte historique",
@@ -47,35 +47,74 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentLang = "fr"; // Langue par défaut
 
     // Changer de thème au clic
-    themeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("light-theme");
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("light-theme");
+        });
+    }
 
     // Changer de langue au clic
-    languageToggle.addEventListener("click", () => {
-        // Basculer la langue
-        currentLang = currentLang === "fr" ? "ko" : "fr";
-    
-        // Appliquer la traduction
-        for (const id in translations[currentLang]) {
-            const element = document.getElementById(id);
-            if (element) { // Vérifier que l'élément existe avant de modifier son contenu
-                element.textContent = translations[currentLang][id];
+    if (languageToggle) {
+        languageToggle.addEventListener("click", () => {
+            // Basculer la langue
+            currentLang = currentLang === "fr" ? "ko" : "fr";
+        
+            // Appliquer la traduction
+            for (const id in translations[currentLang]) {
+                const element = document.getElementById(id);
+                if (element) { // Vérifier que l'élément existe avant de modifier son contenu
+                    element.textContent = translations[currentLang][id];
+                }
             }
-        }
-    });
-
-    // Gérer les boutons pour le trailer et le documentaire
-    const trailerBtn = document.getElementById("trailer-btn");
-    const docuBtn = document.getElementById("docu-btn");
+        });
+    }
 
     // Lien pour le trailer
-    trailerBtn.addEventListener("click", () => {
-        window.location.href = "https://drive.google.com/file/d/1SEl5rPANeRF5ryTSiJc1MR2m9KSFgBTT/view?usp=drive_link"; // Lien vidéo trailer
-    });
+    const trailerBtn = document.getElementById("trailer-btn");
+    if (trailerBtn) {
+        trailerBtn.addEventListener("click", () => {
+            window.location.href = "https://drive.google.com/file/d/1SEl5rPANeRF5ryTSiJc1MR2m9KSFgBTT/view?usp=drive_link"; // Lien vidéo trailer
+        });
+    }
 
     // Lien pour le documentaire
-    docuBtn.addEventListener("click", () => {
-        window.location.href = "https://drive.google.com/file/d/1SEl5rPANeRF5ryTSiJc1MR2m9KSFgBTT/view?usp=drive_link"; // Lien vidéo docu
-    });
+    const docuBtn = document.getElementById("docu-btn");
+    if (docuBtn) {
+        docuBtn.addEventListener("click", () => {
+            window.location.href = "https://drive.google.com/file/d/1SEl5rPANeRF5ryTSiJc1MR2m9KSFgBTT/view?usp=drive_link"; // Lien vidéo documentaire
+        });
+    }
 });
+
+// Code pour l'image et le carrousel
+const images = [
+    { src: "assets/images/jan_yoon_jung.png", name: "Jan Yoon Jung", desc: "Lorem ipsum dolor sit amet." },
+    { src: "assets/images/nam_jin.png", name: "Nam Jin", desc: "Consectetur adipiscing elit." },
+    { src: "assets/images/lee_nan_young.png", name: "Lee Nan Young", desc: "Pellentesque vehicula varius." },
+    { src: "assets/images/young_tak.png", name: "Young Tak", desc: "Pellentesque vehicula varius." }
+];
+
+let currentIndex = 0;
+const mainImage = document.getElementById("main-image");
+const nextImage = document.getElementById("next-image");
+const nameText = document.getElementById("name");
+const description = document.getElementById("description");
+const playButton = document.getElementById("play-button");
+
+if (playButton) {
+    playButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        
+        nextImage.src = images[currentIndex].src;
+        nextImage.style.transform = "translateY(-100%)";
+        nextImage.classList.remove("blurred");
+        
+        setTimeout(() => {
+            mainImage.src = images[currentIndex].src;
+            nameText.textContent = images[currentIndex].name;
+            description.textContent = images[currentIndex].desc;
+            nextImage.style.transform = "translateY(0)";
+            nextImage.classList.add("blurred");
+        }, 500);
+    });
+}
